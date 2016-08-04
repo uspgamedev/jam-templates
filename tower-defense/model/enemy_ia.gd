@@ -5,10 +5,11 @@ export var core_damage = 10
 export var speed = 1.0
 export var name = "default monster"
 
-var points = []
+var next_point = null
 var finish = Vector2()
 var nav_board = null
 var board = null
+var board_half_diagonal = 32
 
 signal arrive
 
@@ -17,7 +18,8 @@ func set_board(board):
   finish = board.get_node("finish").get_global_pos()
   nav_board = board.get_parent()
   self.board = board
-
+  #board_half_diagonal = floor(sqrt(pow(board.get_cell_size().x, 2) + pow(board.get_cell_size().y, 2)) / 2) + 1
+  board_half_diagonal = 1
 
 func _ready():
   set_fixed_process(true)
@@ -39,25 +41,39 @@ func get_direction(origin, destiny):
     return Vector2(1, 0)
   return Vector2(-1, 0)
 
+var points = []
+
+func get_next_point():
+  points = nav_board.get_simple_path(get_global_pos(), finish, false)
+  
+  var index = 0
+  for p in points:
+    if index > 0:
+      p = board.world_to_map(p)
+      p = board.map_to_world(p) + Vector2(board.get_cell_size().x / 2,  board.get_cell_size().y / 2)
+      if p.distance_to(get_global_pos()) > board_half_diagonal:
+        return p
+    index += 1
+
+
 func _fixed_process(delta):
-  if (finish.distance_to(get_global_pos()) < 32):
+  if finish.distance_to(get_global_pos()) < board_half_diagonal:
     emit_signal("arrive")
     queue_free()
+    return
 
-  points = nav_board.get_simple_path(get_global_pos(), finish, false)
+  if next_point == null || next_point.distance_to(get_global_pos()) < board_half_diagonal:
+    next_point = get_next_point()
+    printt("next point", next_point)
 
-  var next_point = board.world_to_map(points[1])
-  next_point = board.map_to_world(next_point)
-  next_point.y += 32
-
-  if points.size() > 1:
-    var direction = get_direction(get_global_pos(), next_point)
-    printt("move", direction)
-    move(direction * speed)
-    update()
+  var direction = get_direction(get_global_pos(), next_point)
+  move(direction * speed)
+  update()
 
 func _draw():
   # if there are points to draw
-  if points.size() > 1:
-    for p in points:
-      draw_circle(p - get_global_pos(), 8, Color(1, 0, 0)) # we draw a circle (convert to global position first)
+  if points.size() < 1:
+    return
+  for p in points:
+    draw_circle(p - get_global_pos(), 8, Color(1, 0, 0))
+  draw_circle(next_point - get_global_pos(), 8, Color(1, 0, 1))
