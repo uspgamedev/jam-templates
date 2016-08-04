@@ -19,7 +19,7 @@ func set_board(board):
   finish = center_tile_point(board, board.get_node("finish").get_global_pos())
   nav_board = board.get_parent()
   #board_half_diagonal = floor(sqrt(pow(board.get_cell_size().x, 2) + pow(board.get_cell_size().y, 2)) / 2) + 1
-  board_half_diagonal = 1
+  board_half_diagonal = speed
 
 func _ready():
   set_fixed_process(true)
