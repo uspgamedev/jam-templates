@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 20, 12 )
+extents = Vector2( 16, 12 )
 
 [node name="npc" instance=ExtResource( 1 )]
 
@@ -36,6 +36,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+__meta__ = { "_edit_group_":true, "_edit_lock_":true }
 
 [node name="area" type="CollisionShape2D" parent="interaction_area"]
 
