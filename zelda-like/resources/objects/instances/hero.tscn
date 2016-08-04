@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://zelda-like/resources/objects/types/monster.tscn" type="PackedScene" id=1]
+[ext_resource path="res://zelda-like/assets/imgs/zelda-alttp-hero-spritesheet.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "idle"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ 0 ] }
+
+[sub_resource type="Animation" id=2]
+
+length = 0.8
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ), "values":[ 0, 1, 2, 3, 4, 5, 6, 7 ] }
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5, 7 )
+
+[node name="hero" instance=ExtResource( 1 )]
+
+collision/layers = 1
+collision/mask = 10
+
+[node name="sprite" parent="."]
+
+texture = ExtResource( 2 )
+offset = Vector2( 0, -12 )
+vframes = 15
+hframes = 11
+frame = 1
+
+[node name="animation" parent="sprite"]
+
+anims/idle = SubResource( 1 )
+anims/moving = SubResource( 2 )
+autoplay = "idle"
+
+[node name="collision" parent="."]
+
+transform/pos = Vector2( -1.84774e-06, -1 )
+transform/rot = 90.0
+shape = SubResource( 3 )
+
+[connection signal="timeout" from="invincibility" to="." method="_on_invincibility_timeout"]

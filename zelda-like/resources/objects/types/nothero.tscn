@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://zelda-like/resources/objects/types/monster.tscn" type="PackedScene" id=1]
+[ext_resource path="res://zelda-like/scripts/classes/nothero.gd" type="Script" id=2]
+[ext_resource path="res://zelda-like/scripts/events/behaviour.gd" type="Script" id=3]
+[ext_resource path="res://zelda-like/assets/imgs/slime.png" type="Texture" id=4]
+[ext_resource path="res://zelda-like/scripts/utility/collisionfix.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+
+length = 0.9
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "values":[ 0, 1, 0, 2 ] }
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "idle"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 18, 7 )
+
+[node name="nothero" instance=ExtResource( 1 )]
+
+script/script = ExtResource( 2 )
+behaviourScript = ExtResource( 3 )
+
+[node name="sprite" parent="."]
+
+texture = ExtResource( 4 )
+offset = Vector2( 0, -32 )
+hframes = 3
+frame = 2
+script/script = null
+
+[node name="animation" parent="sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/idle = SubResource( 1 )
+anims/moving = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+script/script = null
+
+[node name="collision" parent="."]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 5 )
+
+[node name="invincibility" parent="."]
+
+one_shot = true
+script/script = null
+
+[connection signal="timeout" from="invincibility" to="." method="_on_invincibility_timeout"]
