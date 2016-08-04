@@ -27,7 +27,7 @@ func disconnect_hero():
 
 func _on_press_action(act):
     if act == 0:
-        EVENT.run()
+        EVENT.run(act)
 
 func _on_interaction_area_body_enter( body ):
     var hero = get_node("/root/main/gameplay").get_hero()
