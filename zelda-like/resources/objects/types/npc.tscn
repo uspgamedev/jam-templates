@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
+extents = Vector2( 20, 12 )
 
 [node name="npc" instance=ExtResource( 1 )]
 
@@ -20,6 +20,11 @@ eventScript = ExtResource( 4 )
 [node name="sprite" parent="."]
 
 texture = ExtResource( 5 )
+frame = 0
+
+[node name="collision" parent="."]
+
+transform/pos = Vector2( 1, 0 )
 
 [node name="interaction_area" type="Area2D" parent="."]
 
@@ -41,3 +46,5 @@ _update_shape_index = 0
 [connection signal="body_enter" from="interaction_area" to="." method="_on_interaction_area_body_enter"]
 
 [connection signal="body_exit" from="interaction_area" to="." method="_on_interaction_area_body_exit"]
+
+

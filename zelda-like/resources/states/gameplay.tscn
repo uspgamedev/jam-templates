@@ -1,15 +1,10 @@
 [gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://zelda-like/scripts/states/gameplay.gd" type="Script" id=1]
-[ext_resource path="res://zelda-like/resources/maps/map-alttp2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://zelda-like/resources/objects/types/nothero.tscn" type="PackedScene" id=3]
-[ext_resource path="res://zelda-like/resources/objects/instances/hero.tscn" type="PackedScene" id=4]
-[ext_resource path="res://zelda-like/resources/objects/types/npc.tscn" type="PackedScene" id=5]
-
-
-
-
-
+[ext_resource path="res://zelda-like/resources/maps/map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://zelda-like/resources/objects/instances/hero.tscn" type="PackedScene" id=3]
+[ext_resource path="res://zelda-like/resources/objects/types/npc.tscn" type="PackedScene" id=4]
+[ext_resource path="res://zelda-like/resources/objects/types/nothero.tscn" type="PackedScene" id=5]
 
 [node name="gameplay" type="Node2D"]
 
@@ -21,24 +16,40 @@ script/script = ExtResource( 1 )
 
 sort/enabled = true
 
-[node name="nothero" parent="map/bodies" instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 334, 195 )
-
-[node name="nothero1" parent="map/bodies" instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 318, 325 )
-
-[node name="nothero2" parent="map/bodies" instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 166, 278 )
-
-[node name="hero" parent="map/bodies" instance=ExtResource( 4 )]
+[node name="hero" parent="map/bodies" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 259, 270 )
 
-[node name="npc" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="npc" parent="map/bodies" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 253, 196 )
+transform/pos = Vector2( 728.993, 501.996 )
+
+[node name="nothero" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 602.905, 309.362 )
+
+[node name="nothero1" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 500.361, 433.18 )
+
+[node name="nothero2" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 604.903, 967.263 )
+
+[node name="nothero3" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 878.274, 1327.11 )
+
+[node name="nothero4" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1405.49, 1034.21 )
+
+[node name="nothero5" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1469.65, 615.785 )
+
+[node name="nothero6" parent="map/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1394.33, 1511.22 )
 
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://zelda-like/assets/tex/cool_tileset.tex" type="Texture" id=1]
+[ext_resource path="res://zelda-like/assets/imgs/cool_tileset.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -47,14 +47,15 @@ texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 0, 0, 64, 64 )
 
-[node name="wall corner top left" type="Sprite" parent="."]
+[node name="wall top" type="Sprite" parent="."]
 
 transform/pos = Vector2( 96, 96 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 0, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
 
-[node name="body" type="StaticBody2D" parent="wall corner top left"]
+[node name="body" type="StaticBody2D" parent="wall top"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -67,22 +68,21 @@ constant_angular_velocity = 0.0
 friction = 0.0
 bounce = 0.0
 
-[node name="hitbox" type="CollisionShape2D" parent="wall corner top left/body"]
+[node name="hitbox" type="CollisionShape2D" parent="wall top/body"]
 
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="wall bottom" type="Sprite" parent="."]
+[node name="wall right" type="Sprite" parent="."]
 
 transform/pos = Vector2( 160, 96 )
 texture = ExtResource( 1 )
-flip_v = true
 region = true
 region_rect = Rect2( 64, 64, 64, 64 )
 __meta__ = { "_editor_collapsed":true }
 
-[node name="body" type="StaticBody2D" parent="wall bottom"]
+[node name="body" type="StaticBody2D" parent="wall right"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 2 )
@@ -95,18 +95,153 @@ constant_angular_velocity = 0.0
 friction = 0.0
 bounce = 0.0
 
-[node name="hitbox" type="CollisionShape2D" parent="wall bottom/body"]
+[node name="hitbox" type="CollisionShape2D" parent="wall right/body"]
 
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
-[node name="wall top left" type="Sprite" parent="."]
+[node name="wall bottom" type="Sprite" parent="."]
 
 transform/pos = Vector2( 224, 96 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall bottom"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall bottom/body"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 288, 96 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 192, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall left"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall left/body"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall top right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 96, 160 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 320, 0, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall top right"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall top right/body"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall bottom right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 160 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 320, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall bottom right"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall bottom right/body"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall bottom left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 224, 160 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 256, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall bottom left"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall bottom left/body"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall top left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 288, 160 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 256, 0, 64, 64 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="body" type="StaticBody2D" parent="wall top left"]
@@ -127,3 +262,113 @@ bounce = 0.0
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
+
+[node name="wall corner top right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 96, 224 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 448, 0, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall corner top right"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall corner top right/body"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall corner bottom right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 224 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 448, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall corner bottom right"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall corner bottom right/body"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall corner bottom left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 224, 224 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 384, 64, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall corner bottom left"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall corner bottom left/body"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall corner top left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 288, 224 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 384, 0, 64, 64 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="body" type="StaticBody2D" parent="wall corner top left"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 0.0
+
+[node name="hitbox" type="CollisionShape2D" parent="wall corner top left/body"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+
