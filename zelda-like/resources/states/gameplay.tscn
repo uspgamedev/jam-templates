@@ -1,20 +1,31 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://zelda-like/scripts/states/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://zelda-like/resources/maps/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://zelda-like/resources/objects/instances/hero.tscn" type="PackedScene" id=3]
 [ext_resource path="res://zelda-like/resources/objects/types/npc.tscn" type="PackedScene" id=4]
 [ext_resource path="res://zelda-like/resources/objects/types/nothero.tscn" type="PackedScene" id=5]
+[ext_resource path="res://zelda-like/resources/objects/types/area_event.tscn" type="PackedScene" id=6]
+[ext_resource path="res://zelda-like/scripts/events/events_instances/hello_world.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 66.4767, 10 )
 
 [node name="gameplay" type="Node2D"]
 
 script/script = ExtResource( 1 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="map" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -24.5885, 0 )
 
 [node name="bodies" type="YSort" parent="map"]
 
 sort/enabled = true
+__meta__ = { "_edit_group_":true, "_edit_lock_":true }
 
 [node name="hero" parent="map/bodies" instance=ExtResource( 3 )]
 
@@ -52,4 +63,14 @@ transform/pos = Vector2( 1469.65, 615.785 )
 
 transform/pos = Vector2( 1394.33, 1511.22 )
 
+[node name="area_event" parent="map/bodies" instance=ExtResource( 6 )]
 
+transform/pos = Vector2( 511.888, 652.193 )
+eventScript = ExtResource( 7 )
+
+[node name="area" parent="map/bodies/area_event"]
+
+shape = SubResource( 1 )
+
+
+[editable path="map/bodies/area_event"]

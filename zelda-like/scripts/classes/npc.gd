@@ -1,6 +1,8 @@
 
 extends "res://zelda-like/scripts/classes/body.gd"
 
+const HERO = preload("res://zelda-like/scripts/classes/hero.gd")
+
 export(Script) var behaviourScript
 export(Script) var eventScript
 
@@ -27,16 +29,16 @@ func disconnect_hero():
 
 func _on_press_action(act):
     if act == 0:
-        EVENT.run()
+        EVENT.run(act)
 
 func _on_interaction_area_body_enter( body ):
-    var hero = get_node("/root/main/gameplay").get_hero()
-    if body == hero:
+    var is_hero = body extends HERO
+    if is_hero:
         print("connect hero!")
         connect_hero()
 
 func _on_interaction_area_body_exit( body ):
-    var hero = get_node("/root/main/gameplay").get_hero()
-    if body == hero:
+    var is_hero = body extends HERO
+    if is_hero:
         print("disconnect hero!")
         disconnect_hero()

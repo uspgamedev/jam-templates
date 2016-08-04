@@ -6,5 +6,9 @@ var node
 func _init(actor):
     node = actor
 
-func run():
+func _action(params):
+    pass
+
+func run(params):
+    self._action(params)
     print("ACTION!")
