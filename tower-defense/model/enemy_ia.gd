@@ -14,10 +14,10 @@ var board_half_diagonal = 32
 signal arrive
 
 func set_board(board):
-  set_pos(board.get_node("init").get_pos())
-  finish = board.get_node("finish").get_global_pos()
-  nav_board = board.get_parent()
   self.board = board
+  set_pos(center_tile_point(board, board.get_node("init").get_pos()))
+  finish = center_tile_point(board, board.get_node("finish").get_global_pos())
+  nav_board = board.get_parent()
   #board_half_diagonal = floor(sqrt(pow(board.get_cell_size().x, 2) + pow(board.get_cell_size().y, 2)) / 2) + 1
   board_half_diagonal = 1
 
@@ -43,18 +43,21 @@ func get_direction(origin, destiny):
 
 var points = []
 
+static func center_tile_point(board, point):
+  point = board.world_to_map(point)
+  point = board.map_to_world(point) + Vector2(board.get_cell_size().x / 2,  board.get_cell_size().y / 2)
+  return point
+
 func get_next_point():
   points = nav_board.get_simple_path(get_global_pos(), finish, false)
-  
-  var index = 0
-  for p in points:
-    if index > 0:
-      p = board.world_to_map(p)
-      p = board.map_to_world(p) + Vector2(board.get_cell_size().x / 2,  board.get_cell_size().y / 2)
-      if p.distance_to(get_global_pos()) > board_half_diagonal:
-        return p
-    index += 1
 
+  if points.size() > 3:
+    var p1 = points[1]
+    var p2 = points[2]
+    return center_tile_point(board, (p1 + p2) / 2)
+
+  if points.size() > 2:
+    return center_tile_point(board, points[1])
 
 func _fixed_process(delta):
   if finish.distance_to(get_global_pos()) < board_half_diagonal:
@@ -77,3 +80,4 @@ func _draw():
   for p in points:
     draw_circle(p - get_global_pos(), 8, Color(1, 0, 0))
   draw_circle(next_point - get_global_pos(), 8, Color(1, 0, 1))
+  draw_circle(finish - get_global_pos(), 8, Color(0, 1, 0))
