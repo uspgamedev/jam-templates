@@ -20,7 +20,7 @@ eventScript = ExtResource( 4 )
 [node name="sprite" parent="."]
 
 texture = ExtResource( 5 )
-frame = 0
+frame = 1
 
 [node name="collision" parent="."]
 
