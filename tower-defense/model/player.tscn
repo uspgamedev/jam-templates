@@ -1,9 +1,80 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://tower-defense/model/player.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/PressStart-12p.fnt" type="Font" id=2]
 
 [node name="Player" type="Node2D"]
 
 script/script = ExtResource( 1 )
+health = 100
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 11.0
+margin/top = 676.0
+margin/right = 505.0
+margin/bottom = 709.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = true
+percent/visible = true
+
+[node name="LifeLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 18.0
+margin/top = 644.0
+margin/right = 273.0
+margin/bottom = 671.0
+custom_fonts/font = ExtResource( 2 )
+text = "Life"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MoneyLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 534.0
+margin/top = 641.0
+margin/right = 611.0
+margin/bottom = 671.0
+custom_fonts/font = ExtResource( 2 )
+text = "Money"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Money" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 531.0
+margin/top = 674.0
+margin/right = 779.0
+margin/bottom = 707.0
+custom_fonts/font = ExtResource( 2 )
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
