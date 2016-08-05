@@ -1,6 +1,8 @@
 
 extends Node
 
+const DIR = preload("utility/directions.gd")
+
 signal hold_direction (dir)
 signal hold_action (act)
 signal press_direction (dir)
@@ -40,26 +42,26 @@ func _get_direction(e):
     var dir = -1
     if e.is_action_pressed("ui_up") and not e.is_action_pressed("ui_down") \
         and not e.is_action_pressed("ui_left") and not e.is_action_pressed("ui_right"):
-        dir = 0
+        dir = DIR.UP
     elif e.is_action_pressed("ui_down") and not e.is_action_pressed("ui_up") \
         and not e.is_action_pressed("ui_left") and not e.is_action_pressed("ui_right"):
-        dir = 2
+        dir = DIR.DOWN
     if e.is_action_pressed("ui_right") and not e.is_action_pressed("ui_left") \
         and not e.is_action_pressed("ui_down") and not e.is_action_pressed("ui_up"):
-        dir = 1
+        dir = DIR.RIGHT
     elif e.is_action_pressed("ui_left") and not e.is_action_pressed("ui_right") \
         and not e.is_action_pressed("ui_down") and not e.is_action_pressed("ui_up"):
-        dir = 3
+        dir = DIR.LEFT
     if e.is_action_pressed("ui_up") and e.is_action_pressed("ui_right") \
         and not e.is_action_pressed("ui_down") and not e.is_action_pressed("ui_left"):
-        dir = 4
+        dir = DIR.UP_RIGHT
     elif e.is_action_pressed("ui_down") and e.is_action_pressed("ui_left") \
         and not e.is_action_pressed("ui_up") and not e.is_action_pressed("ui_right"):
-        dir = 6
+        dir = DIR.DOWN_LEFT
     if e.is_action_pressed("ui_down") and e.is_action_pressed("ui_right") \
         and not e.is_action_pressed("ui_up") and not e.is_action_pressed("ui_left"):
-        dir = 5
+        dir = DIR.DOWN_RIGHT
     elif e.is_action_pressed("ui_up") and e.is_action_pressed("ui_left") \
         and not e.is_action_pressed("ui_down") and not e.is_action_pressed("ui_right"):
-        dir = 7
+        dir = DIR.UP_LEFT
     return dir
