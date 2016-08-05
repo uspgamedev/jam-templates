@@ -76,8 +76,6 @@ script/script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 
-health = 100
-
 [node name="DeathAlert" type="Label" parent="."]
 
 visibility/visible = false
