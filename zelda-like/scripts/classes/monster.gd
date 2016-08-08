@@ -11,6 +11,7 @@ var damage = 0
 var immunity = false
 
 func _ready():
+    _connect_timeout()
     print("shapes: ",get_shape_count())
     self.set_body_type("monster")
 
@@ -18,6 +19,10 @@ func start_invincibility():
     var timer = get_node("invincibility")
     timer.start()
     immunity = true
+
+func _connect_timeout():
+    var timer = get_node("invincibility")
+    timer.connect("timeout", self, "_on_invincibility_timeout")
 
 func _on_invincibility_timeout():
     immunity = false
