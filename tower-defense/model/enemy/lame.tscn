@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://tower-defense/model/enemy_ia.gd" type="Script" id=1]
-[ext_resource path="res://tower-defense/assets/bodies/idle.png" type="Texture" id=2]
+[ext_resource path="res://tower-defense/assets/bodies/lame-enemy-idle.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -31,14 +31,14 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 health = 10
 core_damage = 10
-speed = 5.0
+speed = 2.0
 name = "default monster"
 
 [node name="Sprite" type="Sprite" parent="."]
 
+transform/scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
 hframes = 3
-frame = 1
 
 [node name="Animation" type="AnimationPlayer" parent="Sprite"]
 

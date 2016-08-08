@@ -11,6 +11,8 @@ var nav_board = null
 var board = null
 var board_half_diagonal = 32
 
+onready var anim = get_node("Sprite/Animation")
+
 signal arrive(damage)
 
 func set_board(board):
@@ -22,6 +24,7 @@ func set_board(board):
 
 func _ready():
   set_fixed_process(true)
+  anim.play("idle")
 
 func get_direction(origin, destiny):
   var direction = (destiny - origin).normalized()
