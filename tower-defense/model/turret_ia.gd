@@ -19,7 +19,7 @@ func _ready():
 func target_enemy(enemy):
   printt("Vai muleque")
   targets.push_back(enemy)
-  printt("targets=", targets)
+  printt("targets=", targets[0])
 
 func untarget_enemy(enemy):
   printt("Nao Vai muleque")
@@ -29,5 +29,5 @@ func untarget_enemy(enemy):
 func _fixed_process(delta):
   if targets.size() == 0:
     return
-
-  #look_at(targets[0])
+  printt("looking at", targets[0].get_global_pos(), "rot=", get_rot())
+  look_at(targets[0].get_pos())
