@@ -35,4 +35,5 @@ func _fixed_process(delta):
 
 func _on_bullet_body_enter( body ):
   printt("body=", body)
+  body.damage(damage)
   queue_free()

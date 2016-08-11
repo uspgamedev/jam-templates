@@ -12,6 +12,7 @@ var board = null
 var board_half_diagonal = 32
 
 onready var anim = get_node("Sprite/Animation")
+onready var lifebar = get_node("LifeBar")
 
 signal arrive(damage)
 
@@ -25,6 +26,9 @@ func set_board(board):
 func _ready():
   set_fixed_process(true)
   anim.play("idle")
+  lifebar.set_min(0)
+  lifebar.set_max(health)
+  lifebar.set_value(health)
 
 func get_direction(origin, destiny):
   var direction = (destiny - origin).normalized()
@@ -61,6 +65,12 @@ func get_next_point():
   if points.size() > 2:
     return center_tile_point(board, points[1])
 
+func damage(amount):
+  self.health -= amount
+  if self.health <= 0:
+    print(self, " died")
+    queue_free()
+
 func _fixed_process(delta):
   if finish.distance_to(get_global_pos()) < board_half_diagonal:
     emit_signal("arrive", core_damage)
@@ -76,6 +86,7 @@ func _fixed_process(delta):
   update()
 
 func _draw():
+  lifebar.set_value(health)
   # if there are points to draw
   if points.size() < 1:
     return

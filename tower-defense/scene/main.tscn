@@ -51,6 +51,7 @@ transform/pos = Vector2( 32, 290 )
 [node name="NormalTurret" parent="BoardNav/BoardMap" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 160, 287 )
+damage = 2
 shoot_speed = 0.3
 turn_speed = 0.04
 
