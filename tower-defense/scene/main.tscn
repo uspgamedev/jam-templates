@@ -3,11 +3,11 @@
 [ext_resource path="res://tower-defense/scene/main.gd" type="Script" id=1]
 [ext_resource path="res://tower-defense/assets/scene/floor.png" type="Texture" id=2]
 [ext_resource path="res://tower-defense/components/util/walls_tiles.tres" type="TileSet" id=3]
-[ext_resource path="res://tower-defense/model/turrets/normal-turret.scn" type="PackedScene" id=4]
+[ext_resource path="res://tower-defense/model/turrets/normal-turret.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tower-defense/components/tdef-controller.gd" type="Script" id=5]
 [ext_resource path="res://tower-defense/components/tdef-death-controller.gd" type="Script" id=6]
 [ext_resource path="res://tower-defense/model/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/fonts/PressStart-32p.fnt" type="Font" id=8]
+[ext_resource path="res://assets/fonts/PressStart-32p.fnt" type="BitmapFont" id=8]
 
 [node name="main" type="Node2D"]
 
@@ -50,7 +50,9 @@ transform/pos = Vector2( 32, 290 )
 
 [node name="NormalTurret" parent="BoardNav/BoardMap" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 161, 287 )
+transform/pos = Vector2( 160, 287 )
+shoot_speed = 0.3
+turn_speed = 0.04
 
 [node name="SelectMap" type="TileMap" parent="BoardNav"]
 

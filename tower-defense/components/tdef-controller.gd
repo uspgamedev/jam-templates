@@ -1,7 +1,7 @@
 
 extends "res://components/controller/default_controller.gd"
 
-const Lame = preload("res://tower-defense/model/enemy/lame.tscn")
+const Lame = preload("res://tower-defense/model/enemy/lame-enemy.tscn")
 
 func event_create_lame():
   var lame = Lame.instance()
