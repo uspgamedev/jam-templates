@@ -13,6 +13,8 @@ extents = Vector2( 16, 12 )
 
 [node name="npc" instance=ExtResource( 1 )]
 
+collision/layers = 4
+collision/mask = 3
 script/script = ExtResource( 2 )
 behaviourScript = ExtResource( 3 )
 eventScript = ExtResource( 4 )
@@ -20,7 +22,7 @@ eventScript = ExtResource( 4 )
 [node name="sprite" parent="."]
 
 texture = ExtResource( 5 )
-frame = 1
+frame = 0
 
 [node name="collision" parent="."]
 

@@ -28,7 +28,8 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":false, "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "values":[ 0, 1, 0, 2 ] }
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 0, 2 ] }
 
 [sub_resource type="Animation" id=4]
 
@@ -73,7 +74,8 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":false, "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "values":[ 0, 1, 0, 2 ] }
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 0, 2 ] }
 
 [sub_resource type="Animation" id=10]
 
@@ -88,6 +90,8 @@ extents = Vector2( 18, 7 )
 
 [node name="nothero" instance=ExtResource( 1 )]
 
+collision/layers = 2
+collision/mask = 14
 script/script = ExtResource( 2 )
 behaviourScript = ExtResource( 3 )
 
