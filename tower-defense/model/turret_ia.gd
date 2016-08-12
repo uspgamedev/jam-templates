@@ -7,6 +7,7 @@ const Bullet = preload("res://tower-defense/model/turrets/normal-turret-bullet.g
 const Enemy = preload("res://tower-defense/model/enemy_ia.gd")
 
 export var damage = 10
+export var price = 100
 export var shoot_speed = 0.5
 export var turn_speed = 0.02
 export var name = "default turret"

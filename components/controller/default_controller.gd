@@ -22,8 +22,13 @@ func disable():
   enabled = false
 
 func _input_event(event):
-  if event.is_pressed() and event.type == InputEvent.KEY:
+  if not event.is_pressed():
+    return
+
+  if event.type == InputEvent.KEY or event.type == InputEvent.MOUSE_BUTTON:
     consume_input_key(event)
+    
+  
 
 func _input(event):
   _input_event(event)
@@ -42,10 +47,15 @@ func build_action_dict():
     index += 1
     action = InputMap.get_action_from_id(index)
     var method_name = get_event_name(action)
+    #printt("action=", action, "method=", method_name)
     if self.has_method(method_name):
+      #printt("method=", method_name, " found")
       actions[action] = funcref(self, method_name)
       if self.get_tree() != null:
         self.get_tree().set_input_as_handled()
+    #else:
+    #  printt("method=", method_name, " not found")
+  #printt("actions=", actions)
 
 func consume_input_key(event):
   if not enabled:
