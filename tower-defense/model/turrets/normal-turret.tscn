@@ -3,7 +3,7 @@
 [ext_resource path="res://tower-defense/model/turret_ia.gd" type="Script" id=1]
 [ext_resource path="res://tower-defense/assets/bodies/turret.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 197.217
@@ -16,7 +16,7 @@ extents = Vector2( 31.8185, 29.7967 )
 [node name="NormalTurret" type="Area2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 shapes/1/shape = SubResource( 2 )
@@ -28,6 +28,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 damage = 10
+price = 100
 shoot_speed = 1.0
 turn_speed = 1.0
 name = "default turret"
@@ -38,7 +39,7 @@ texture = ExtResource( 2 )
 
 [node name="Vision" type="CollisionShape2D" parent="."]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 

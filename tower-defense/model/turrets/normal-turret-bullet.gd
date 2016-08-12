@@ -28,6 +28,8 @@ func _ready():
   set_fixed_process(true)
 
 func _fixed_process(delta):
+  if target == null: #enemy died
+    queue_free()
   var direction = (target.get_pos() - get_pos()) * speed * delta
   #printt("#shot", self, " direction=", direction)
 
