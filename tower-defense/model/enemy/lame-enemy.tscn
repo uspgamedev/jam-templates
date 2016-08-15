@@ -68,6 +68,7 @@ health = 10
 core_damage = 10
 speed = 2.0
 name = "default monster"
+money = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 
