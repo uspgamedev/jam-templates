@@ -21,8 +21,8 @@ func _fixed_process(delta):
 	selected_turret.show()
 
 func _on_player_place_turret( turret ):
-	printt("turret=", turret, " pos=", turret.get_pos())
+	#printt("turret=", turret, " pos=", turret.get_pos())
 	board.get_node("turrets").add_child(turret)
-	printt("turrets=", board.get_node("turrets").get_children())
+	#printt("turrets=", board.get_node("turrets").get_children())
 	turret.show()
 	player.unselect_turret()

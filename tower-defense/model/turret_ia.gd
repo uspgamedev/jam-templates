@@ -18,7 +18,18 @@ onready var shoot_timer = get_node("ShootTimer")
 onready var bullets = get_node("Bullets")
 onready var shoot_area = get_node("ShootArea")
 
+var enabled = false
+
 var targets = []
+
+func disable():
+  enabled = false
+
+func enable():
+  enabled = true
+
+func is_enabled():
+  return enabled
 
 func _ready():
   set_fixed_process(true)
@@ -29,6 +40,9 @@ func _ready():
   shoot_timer.set_wait_time(shoot_speed)
   shoot_timer.start()
   printt("shapes=", get_shape_count())
+
+func get_price():
+  return price
 
 func target_enemy(enemy):
   if not enemy extends Enemy:
@@ -44,6 +58,8 @@ func untarget_enemy(enemy):
   targets.remove(targets.find(enemy))
 
 func _on_turn_timeout():
+  if not is_enabled():
+    return
   if targets.size() == 0:
     return
   var target_pos = targets[0].get_pos()
@@ -55,6 +71,8 @@ func _on_turn_timeout():
     set_rot(get_rot() - TURN_STEP)
 
 func _on_shoot_timeout():
+  if not is_enabled():
+    return
   if targets.size() == 0:
     return
   if not shoot_area.overlaps_body(targets[0]):

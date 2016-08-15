@@ -9,6 +9,7 @@ func event_create_lame():
   get_parent().get_board().get_node("enemies").add_child(lame)
 
   lame.connect("arrive", get_parent() , "receive_damage")
+  lame.connect("enemy_died", get_parent() , "receive_money")
 
 func event_cancel():
   if get_parent().get_selected_turret() == null:

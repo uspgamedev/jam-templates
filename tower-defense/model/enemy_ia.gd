@@ -4,6 +4,7 @@ export var health = 10
 export var core_damage = 10
 export var speed = 1.0
 export var name = "default monster"
+export var money = 50
 
 var next_point = null
 var finish = Vector2()
@@ -15,6 +16,7 @@ onready var anim = get_node("Sprite/Animation")
 onready var lifebar = get_node("LifeBar")
 
 signal arrive(damage)
+signal enemy_died(money)
 
 func set_board(board):
   self.board = board
@@ -69,6 +71,7 @@ func damage(amount):
   self.health -= amount
   if self.health <= 0:
     print(self, " died")
+    emit_signal("enemy_died", money)
     queue_free()
 
 func _fixed_process(delta):

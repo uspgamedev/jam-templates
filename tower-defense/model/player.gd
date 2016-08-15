@@ -25,7 +25,7 @@ func _ready():
 
 func receive_damage(damage):
   health -= damage
-  printt("damage taken", damage, " health=", health)
+  #printt("damage taken", damage, " health=", health)
 
   if health <= 0:
     controller.disable()
@@ -47,7 +47,7 @@ func _on_normal_turret_button_released():
   if get_node("TurretButtons/NormalTurret").is_pressed():
     button = get_node("TurretButtons/NormalTurret")
 
-  printt("button=", button)
+  #printt("button=", button)
   reset_buttons(button)
 
   if button == null:
@@ -76,7 +76,7 @@ func break_enemy_path(tile_pos, old_tile):
   var finish = center_tile_point(board, board.get_node("finish").get_pos())
 
   var points = board.get_parent().get_simple_path(init, finish, false)
-  printt("path=", points)
+  #printt("path=", points)
 
   if points.size() <= 1:
     return true
@@ -84,6 +84,9 @@ func break_enemy_path(tile_pos, old_tile):
   return false
 
 func place_turret():
+  if selected_turret.get_price() > self.money:
+    return
+
   var tile_pos = board.world_to_map(selected_turret.get_pos())
   var aux_cell = board.get_cell(tile_pos.x, tile_pos.y)
   if aux_cell != 1:
@@ -100,9 +103,16 @@ func place_turret():
 
   remove_child(selected_turret)
   get_selected_button().set_pressed(false)
+  money -= selected_turret.get_price()
+  money_label.set_text("$ %d" % money)
+  selected_turret.enable()
   emit_signal("place_turret", selected_turret)
 
 
 func unselect_turret():
   remove_child(selected_turret)
   selected_turret = null
+
+func receive_money(money):
+  self.money += money
+  money_label.set_text("$ %d" % self.money)
