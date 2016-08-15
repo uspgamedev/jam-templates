@@ -16,9 +16,9 @@ onready var vision = get_node("Vision").get_shape()
 onready var turn_timer = get_node("TurnTimer")
 onready var shoot_timer = get_node("ShootTimer")
 onready var bullets = get_node("Bullets")
+onready var shoot_area = get_node("ShootArea")
 
 var targets = []
-var on_target = false
 
 func _ready():
   set_fixed_process(true)
@@ -53,19 +53,14 @@ func _on_turn_timeout():
     set_rot(get_rot() + TURN_STEP)
   elif target_angle < -0.1:
     set_rot(get_rot() - TURN_STEP)
-  else:
-    on_target = true
-
 
 func _on_shoot_timeout():
   if targets.size() == 0:
     return
-  if not on_target:
+  if not shoot_area.overlaps_body(targets[0]):
     return
   if bullets.get_child_count() == 1:
     return
-
-  on_target = false  
 
   var bullet = Bullet.create(self, targets[0], damage)
   bullets.add_child(bullet)

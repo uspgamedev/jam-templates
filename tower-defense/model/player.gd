@@ -71,20 +71,33 @@ func get_selected_button():
     if button.is_pressed():
       return button
 
+func break_enemy_path(tile_pos, old_tile):
+  var init = center_tile_point(board, board.get_node("init").get_pos())
+  var finish = center_tile_point(board, board.get_node("finish").get_pos())
+
+  var points = board.get_parent().get_simple_path(init, finish, false)
+  printt("path=", points)
+
+  if points.size() <= 1:
+    return true
+
+  return false
+
 func place_turret():
   var tile_pos = board.world_to_map(selected_turret.get_pos())
   var aux_cell = board.get_cell(tile_pos.x, tile_pos.y)
+  if aux_cell != 1:
+    return
   board.set_cell(tile_pos.x, tile_pos.y, -1)
-
-  var init = center_tile_point(board, board.get_node("init").get_pos())
-  var finish = center_tile_point(board, board.get_node("finish").get_pos())
   yield(get_tree(), "fixed_frame")
-  var points = board.get_parent().get_simple_path(init, finish, false)
-  printt("path=", points)
-  if points.size() <= 1:
+
+  var has_not_path = break_enemy_path(tile_pos, aux_cell)
+
+  if has_not_path:
     board.set_cell(tile_pos.x, tile_pos.y, aux_cell)
     yield(get_tree(), "fixed_frame")
     return
+
   remove_child(selected_turret)
   get_selected_button().set_pressed(false)
   emit_signal("place_turret", selected_turret)

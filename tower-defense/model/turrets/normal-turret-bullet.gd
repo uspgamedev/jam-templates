@@ -19,7 +19,7 @@ static func create(turret, target, damage):
   bullet.damage = damage
   bullet.target = target
   bullet.turret = turret
-  
+
   bullet.set_global_pos(turret.get_node("BulletSpot").get_global_pos())
 
   return bullet
@@ -28,10 +28,11 @@ func _ready():
   set_fixed_process(true)
 
 func _fixed_process(delta):
-  if target == null: #enemy died
+  var wr = weakref(target) 
+  if target == null or !wr.get_ref(): #enemy died
     queue_free()
+    return
   var direction = (target.get_pos() - get_pos()) * speed * delta
-  #printt("#shot", self, " direction=", direction)
 
   move(direction)
 
