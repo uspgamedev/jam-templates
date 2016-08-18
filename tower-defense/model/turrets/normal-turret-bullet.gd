@@ -14,7 +14,7 @@ var turret
 
 static func create(turret, target, damage):
   var bullet = BulletScene.instance()
-  printt("create bullet ", bullet)
+  #printt("create bullet ", bullet)
 
   bullet.damage = damage
   bullet.target = target
@@ -28,7 +28,7 @@ func _ready():
   set_fixed_process(true)
 
 func _fixed_process(delta):
-  var wr = weakref(target) 
+  var wr = weakref(target)
   if target == null or !wr.get_ref(): #enemy died
     queue_free()
     return
@@ -37,6 +37,6 @@ func _fixed_process(delta):
   move(direction)
 
 func _on_bullet_body_enter( body ):
-  printt("body=", body)
+  #printt("body=", body)
   body.damage(damage)
   queue_free()

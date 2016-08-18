@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://tower-defense/scene/main.gd" type="Script" id=1]
 [ext_resource path="res://tower-defense/assets/scene/floor.png" type="Texture" id=2]
 [ext_resource path="res://tower-defense/components/util/walls_tiles.tres" type="TileSet" id=3]
 [ext_resource path="res://tower-defense/model/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tower-defense/model/wave-manager.gd" type="Script" id=5]
+[ext_resource path="res://tower-defense/model/spawn-cycle.gd" type="Script" id=6]
+[ext_resource path="res://tower-defense/model/enemy/lame-enemy.tscn" type="PackedScene" id=7]
 
 [node name="main" type="Node2D"]
 
@@ -47,6 +50,111 @@ transform/pos = Vector2( 32, 290 )
 [node name="turrets" type="Node" parent="BoardNav/BoardMap"]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+
+[node name="Waves" type="Node" parent="."]
+
+script/script = ExtResource( 5 )
+delta_wave_delay = 3
+
+[node name="Wave 1" type="Node" parent="Waves"]
+
+[node name="Cycle1" type="Node" parent="Waves/Wave 1"]
+
+script/script = ExtResource( 6 )
+repetitions = 1
+spawn_time = 1
+start_delay = 2
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Cycle2" type="Node" parent="Waves/Wave 1"]
+
+script/script = ExtResource( 6 )
+repetitions = 2
+spawn_time = 1
+start_delay = 5.0
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Cycle3" type="Node" parent="Waves/Wave 1"]
+
+script/script = ExtResource( 6 )
+repetitions = 4
+spawn_time = 0.5
+start_delay = 5.0
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Cycle4" type="Node" parent="Waves/Wave 1"]
+
+script/script = ExtResource( 6 )
+repetitions = 6
+spawn_time = 0.5
+start_delay = 5.0
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Wave 2" type="Node" parent="Waves"]
+
+[node name="Cycle1" type="Node" parent="Waves/Wave 2"]
+
+script/script = ExtResource( 6 )
+repetitions = 10
+spawn_time = 0.3
+start_delay = 2
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Cycle2" type="Node" parent="Waves/Wave 2"]
+
+script/script = ExtResource( 6 )
+repetitions = 15
+spawn_time = 0.3
+start_delay = 2
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Cycle3" type="Node" parent="Waves/Wave 2"]
+
+script/script = ExtResource( 6 )
+repetitions = 20
+spawn_time = 0.3
+start_delay = 2
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
+
+[node name="Cycle4" type="Node" parent="Waves/Wave 2"]
+
+script/script = ExtResource( 6 )
+repetitions = 100
+spawn_time = 0.1
+start_delay = 2
+enemy_scene = ExtResource( 7 )
+health = 10
+core_damage = 10
+speed = 2.0
+money = 50
 
 [connection signal="place_turret" from="Player" to="." method="_on_player_place_turret"]
 

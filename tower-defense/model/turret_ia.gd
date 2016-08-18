@@ -39,7 +39,7 @@ func _ready():
   turn_timer.start()
   shoot_timer.set_wait_time(shoot_speed)
   shoot_timer.start()
-  printt("shapes=", get_shape_count())
+  #printt("shapes=", get_shape_count())
 
 func get_price():
   return price
@@ -47,14 +47,14 @@ func get_price():
 func target_enemy(enemy):
   if not enemy extends Enemy:
     return
-  printt("Vai muleque")
+  #printt("enemy targeted")
   targets.push_back(enemy)
-  printt("targets=", targets[0])
+  #printt("targets=", targets[0])
 
 func untarget_enemy(enemy):
   if not enemy extends Enemy:
      return
-  printt("Nao Vai muleque")
+  #printt("enemy is gone")
   targets.remove(targets.find(enemy))
 
 func _on_turn_timeout():
@@ -82,4 +82,4 @@ func _on_shoot_timeout():
 
   var bullet = Bullet.create(self, targets[0], damage)
   bullets.add_child(bullet)
-  printt("shoot")
+  #printt("shoot")

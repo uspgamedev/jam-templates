@@ -83,6 +83,9 @@ func break_enemy_path(tile_pos, old_tile):
 
   return false
 
+func set_current_wave(wave_name):
+  get_node("CurrentWave").set_text(wave_name)
+
 func place_turret():
   if selected_turret.get_price() > self.money:
     return

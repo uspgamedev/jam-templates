@@ -18,6 +18,12 @@ onready var lifebar = get_node("LifeBar")
 signal arrive(damage)
 signal enemy_died(money)
 
+func set_data(health, core_damage, speed, money):
+  self.health = health
+  self.core_damage = core_damage
+  self.speed = speed
+  self.money = money
+
 func set_board(board):
   self.board = board
   set_pos(center_tile_point(board, board.get_node("init").get_pos()))
