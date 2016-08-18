@@ -2,6 +2,15 @@ extends Node2D
 
 onready var player = get_node("Player")
 onready var board = get_node("BoardNav/BoardMap")
+onready var wave_manager = get_node("Waves")
+
+func _ready():
+	var timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(0.5)
+	add_child(timer)
+	timer.connect("timeout", wave_manager, "start_waves")
+	timer.start()
 
 func _on_turret_selected():
 	set_fixed_process(true)
