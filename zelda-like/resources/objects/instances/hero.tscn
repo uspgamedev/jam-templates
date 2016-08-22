@@ -113,7 +113,7 @@ extents = Vector2( 9, 4 )
 [sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.1169, 30.4411 )
+extents = Vector2( 31.1169, 33.6211 )
 
 [node name="hero" instance=ExtResource( 1 )]
 
@@ -161,7 +161,7 @@ script/script = ExtResource( 4 )
 
 script/script = null
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="."]
 
 transform/pos = Vector2( 0, 22.1967 )
 transform/scale = Vector2( 1, 0.443648 )
@@ -174,13 +174,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 
 shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="hitbox"]
 
 transform/pos = Vector2( -0.189133, -39.944 )
 transform/scale = Vector2( 1, 2.25404 )
