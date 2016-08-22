@@ -26,6 +26,7 @@ func _take_dmg(collider, normal, delta):
     var dist = normal.length()
     self.speed += normal * (ACC*ACC) * STAGGER * delta * 1/(dist*dist)
     self.damage += collider.attack
+    printt("health=", maxHP - damage, "name=", get_name(), "path=", get_path())
     start_invincibility()
 
 func _check_collision(motion, collider, normal, delta):

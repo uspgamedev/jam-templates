@@ -9,6 +9,7 @@ func _ready():
     _start_camera()
     input.connect("hold_direction", self._hero, "_move_to")
     input.connect("press_quit", self, "_quit")
+    input.connect("press_action", self._hero, "_act")
     set_process(true)
 
 func _start_camera():

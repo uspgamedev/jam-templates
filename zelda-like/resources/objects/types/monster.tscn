@@ -12,8 +12,8 @@ attack = 8
 [node name="invincibility" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 1.0
-one_shot = false
+wait_time = 3.0
+one_shot = true
 autostart = false
 
 [connection signal="timeout" from="invincibility" to="." method="_on_invincibility_timeout"]
