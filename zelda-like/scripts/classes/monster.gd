@@ -10,6 +10,8 @@ export var attack = 8
 var damage = 0
 var immunity = false
 
+signal died
+
 func _ready():
     print("shapes: ",get_shape_count())
     self.set_body_type("monster")
@@ -22,11 +24,16 @@ func start_invincibility():
 func _on_invincibility_timeout():
     immunity = false
 
+func take_dmg(dmg):
+  self.damage += dmg
+  printt("health=", maxHP - damage, "name=", get_name(), "path=", get_path())
+  if damage >= maxHP:
+     emit_signal("died")
+
 func _take_dmg(collider, normal, delta):
     var dist = normal.length()
     self.speed += normal * (ACC*ACC) * STAGGER * delta * 1/(dist*dist)
-    self.damage += collider.attack
-    printt("health=", maxHP - damage, "name=", get_name(), "path=", get_path())
+    take_dmg(collider.attack)
     start_invincibility()
 
 func _check_collision(motion, collider, normal, delta):

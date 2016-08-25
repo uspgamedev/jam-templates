@@ -30,4 +30,4 @@ func _act(act):
     for body in range_bodies:
       if body extends MONSTER:
         printt("monster=", body)
-        body._take_dmg(body, body.get_collision_normal(), 1)
+        body.take_dmg(body.attack)
