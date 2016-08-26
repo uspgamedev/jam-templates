@@ -7,4 +7,4 @@ var current_state
 
 func _ready():
     current_state = GamePlay.instance()
-    self.add_child(current_state)
+    get_node("gameplay").replace_by(current_state)

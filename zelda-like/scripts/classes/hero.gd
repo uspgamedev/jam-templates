@@ -22,6 +22,12 @@ func _move_to(dir):
     set_rotd(90)
     sprite.set_rotd(-90)
 
+func apply_damage(dmg):
+  self.damage += dmg
+  printt("health=", maxHP - damage, "name=", get_name(), "path=", get_path())
+  if damage >= maxHP:
+     emit_signal("died")
+
 func _act(act):
   printt("act=", act)
   if act == 0:
