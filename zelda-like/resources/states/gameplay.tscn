@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://zelda-like/scripts/states/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://zelda-like/resources/maps/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://zelda-like/resources/objects/instances/hero.tscn" type="PackedScene" id=3]
 [ext_resource path="res://zelda-like/resources/objects/types/npc.tscn" type="PackedScene" id=4]
-[ext_resource path="res://zelda-like/resources/objects/types/nothero.tscn" type="PackedScene" id=5]
-[ext_resource path="res://zelda-like/resources/objects/types/area_event.tscn" type="PackedScene" id=6]
-[ext_resource path="res://zelda-like/scripts/events/events_instances/hello_world.gd" type="Script" id=7]
+[ext_resource path="res://zelda-like/scripts/events/event_talk.gd" type="Script" id=5]
+[ext_resource path="res://zelda-like/scripts/classes/speech.gd" type="Script" id=6]
+[ext_resource path="res://zelda-like/scripts/classes/answer.gd" type="Script" id=7]
+[ext_resource path="res://zelda-like/resources/objects/types/nothero.tscn" type="PackedScene" id=8]
+[ext_resource path="res://zelda-like/resources/objects/types/area_event.tscn" type="PackedScene" id=9]
+[ext_resource path="res://zelda-like/scripts/events/events_instances/hello_world.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -34,39 +37,85 @@ transform/pos = Vector2( 259, 270 )
 [node name="npc" parent="map/bodies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 728.993, 501.996 )
+eventScript = ExtResource( 5 )
 
-[node name="nothero" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="Conversation" type="Node" parent="map/bodies/npc"]
+
+[node name="Speech1" type="Node" parent="map/bodies/npc/Conversation"]
+
+script/script = ExtResource( 6 )
+speech = "Hi... "
+
+[node name="Answer1" type="Node" parent="map/bodies/npc/Conversation/Speech1"]
+
+script/script = ExtResource( 7 )
+text = "Hello"
+next_speech = NodePath("../../Speech2")
+action = "printt(\"hi\")"
+
+[node name="Speech2" type="Node" parent="map/bodies/npc/Conversation"]
+
+script/script = ExtResource( 6 )
+speech = "How are you doing\?"
+
+[node name="Ans-Fine" type="Node" parent="map/bodies/npc/Conversation/Speech2"]
+
+script/script = ExtResource( 7 )
+text = "Fine"
+next_speech = null
+action = "player.apply_damage(10)"
+
+[node name="Ans-NotFeelingWell" type="Node" parent="map/bodies/npc/Conversation/Speech2"]
+
+script/script = ExtResource( 7 )
+text = "Not feeling well"
+next_speech = NodePath("../../Speech3")
+action = "printt(\"hi\")"
+
+[node name="Speech3" type="Node" parent="map/bodies/npc/Conversation"]
+
+script/script = ExtResource( 6 )
+speech = "So sad... Well be safe"
+
+[node name="Ans-Finish" type="Node" parent="map/bodies/npc/Conversation/Speech3"]
+
+script/script = ExtResource( 7 )
+text = "See ya"
+next_speech = null
+action = "pass"
+
+[node name="nothero" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 602.905, 309.362 )
 
-[node name="nothero1" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="nothero1" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 500.361, 433.18 )
 
-[node name="nothero2" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="nothero2" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 604.903, 967.263 )
 
-[node name="nothero3" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="nothero3" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 878.274, 1327.11 )
 
-[node name="nothero4" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="nothero4" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 1405.49, 1034.21 )
 
-[node name="nothero5" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="nothero5" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 1469.65, 615.785 )
 
-[node name="nothero6" parent="map/bodies" instance=ExtResource( 5 )]
+[node name="nothero6" parent="map/bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 1394.33, 1511.22 )
 
-[node name="area_event" parent="map/bodies" instance=ExtResource( 6 )]
+[node name="area_event" parent="map/bodies" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 511.888, 652.193 )
-eventScript = ExtResource( 7 )
+eventScript = ExtResource( 10 )
 
 [node name="area" parent="map/bodies/area_event"]
 
